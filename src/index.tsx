@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import LocaleProvider from './locales/Provider';
+import ThemeProvider from './theme/Provider';
+import PickerProvider from './theme/PickerProvider';
+
 import App from './App';
+import store from './store';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <LocaleProvider>
+        <ThemeProvider>
+          <PickerProvider>
+            <CssBaseline />
+            <App />
+          </PickerProvider>
+        </ThemeProvider>
+      </LocaleProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
